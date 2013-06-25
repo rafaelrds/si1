@@ -1,6 +1,6 @@
 <project name="Si1" default="executa" basedir=".">
 	<description>
-		a simple build file
+		um arquivo de build.xml simples
 	</description>
 	<!-- set global properties for this build -->
 	<property name="src" location="src" />
