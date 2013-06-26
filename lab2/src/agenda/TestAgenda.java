@@ -1,22 +1,24 @@
 package agenda;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ListaTest {
+public class TestAgenda {
 
-	ListaDeContatos lista;
+	Agenda lista;
 
 	@Before
 	public void init(){
-		lista = new ListaDeContatos();
+		lista = new Agenda();
 	}
 
-
+	@Test
+	public void testListarcontatos(){
+		Assert.assertNotNull(lista.getContatos());
+	}
+	
 	@Test
 	public void testCadastraNovoContato() {
 
@@ -25,9 +27,6 @@ public class ListaTest {
 		Assert.assertFalse(lista.getTotalDeContatos() == 0);
 	}
 
-	@Test
-	public void testListarcontatos(){
-		Assert.assertNotNull(lista.getContatos());
-	}
+	
 
 }

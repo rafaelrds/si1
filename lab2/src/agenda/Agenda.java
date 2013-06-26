@@ -3,11 +3,11 @@ package agenda;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaDeContatos {
+public class Agenda {
 
 	List<Contato> listaDeContatos;
 
-	public ListaDeContatos(){
+	public Agenda(){
 		listaDeContatos= new ArrayList<Contato>();
 	}
 
