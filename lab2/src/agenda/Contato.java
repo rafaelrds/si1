@@ -8,6 +8,7 @@ public class Contato {
 	private String nome;
 	private List<String> telefones;
 	private List<String> emails;
+	
 
 
 	public Contato(String nome, ArrayList<String> telefones,ArrayList<String> emails) {
