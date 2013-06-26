@@ -6,14 +6,13 @@ import java.util.List;
 public class Contato {
 
 	private String nome;
-	private List<String> telefones;
+	private List<Numero> telefones;
 	private List<String> emails;
+	private Integer idade;
 	
 
 
-	public Contato(String nome, ArrayList<String> telefones,ArrayList<String> emails) {
-		telefones = new ArrayList<String>();
-		emails = new ArrayList<String>();
+	public Contato(String nome, List<Numero> telefones,ArrayList<String> emails) {
 		this.nome=nome;
 		this.telefones=telefones;
 		this.emails=emails;
@@ -30,12 +29,12 @@ public class Contato {
 	}
 
 
-	public List<String> getTelefones() {
+	public List<Numero> getTelefones() {
 		return telefones;
 	}
 
 
-	public void setTelefones(List<String> telefones) {
+	public void setTelefones(List<Numero> telefones) {
 		this.telefones = telefones;
 	}
 
@@ -47,6 +46,16 @@ public class Contato {
 
 	public void setEmails(List<String> emails) {
 		this.emails = emails;
+	}
+
+
+	public Integer getIdade() {
+		return idade;
+	}
+
+
+	public void setIdade(Integer idade) {
+		this.idade = idade;
 	}
 
 
