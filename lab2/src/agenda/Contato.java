@@ -6,10 +6,13 @@ import java.util.List;
 public class Contato {
 
 	private String nome;
-	private List<String> telefones,emails;
+	private List<String> telefones;
+	private List<String> emails;
 
 
 	public Contato(String nome, ArrayList<String> telefones,ArrayList<String> emails) {
+		telefones = new ArrayList<String>();
+		emails = new ArrayList<String>();
 		this.nome=nome;
 		this.telefones=telefones;
 		this.emails=emails;
