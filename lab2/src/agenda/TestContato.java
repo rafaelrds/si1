@@ -1,20 +1,15 @@
 package agenda;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Before;
 import org.junit.Test;
 
 import junit.framework.TestCase;
 
 
-public class ContatoTest extends TestCase {
-
-
+public class TestContato extends TestCase {
 	
 	@Test
-	public void testaNome(){
+	public void testaCampos(){
 		
 		ArrayList<Numero> telefones = new ArrayList<Numero>();
 		Numero num1 = new Numero("96246511", "41", "TIM");
@@ -25,8 +20,9 @@ public class ContatoTest extends TestCase {
 		ArrayList<String> emails = new ArrayList<String>();
 		emails.add("crafards@gmail.com");
 		
-		Contato contato = new Contato("Rafael", telefones, emails);
+		Contato contato = new Contato("Rafael", telefones);
 		assertEquals("Rafael", contato.getNome());
+		System.out.println(contato.getTelefones().toString());
 	}
 
 

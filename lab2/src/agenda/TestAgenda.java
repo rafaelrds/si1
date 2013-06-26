@@ -23,9 +23,9 @@ public class TestAgenda {
 	@Test
 	public void testCadastraNovoContato() {
 
-		assertEquals(lista.getTotalDeContatos(), 0);
-		lista.addContato("Rafael",new ArrayList<Numero>(),new ArrayList<String>());
-		assertFalse(lista.getTotalDeContatos() == 0);
+		assertEquals(lista.getQuantidadeDeNumeros(), 0);
+		lista.addContato("Rafael",new ArrayList<Numero>());
+		assertFalse(lista.getQuantidadeDeNumeros() == 0);
 	}
 
 	

@@ -1,23 +1,27 @@
 package agenda;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Contato {
 
 	private String nome;
 	private List<Numero> telefones;
-	private List<String> emails;
 	private Integer idade;
 	
 
 
-	public Contato(String nome, List<Numero> telefones,ArrayList<String> emails) {
+	public Contato(String nome, List<Numero> telefones) {
+		if(nome.equals("") | nome == null) 
+			throw new IllegalArgumentException();
+
 		this.nome=nome;
 		this.telefones=telefones;
-		this.emails=emails;
 	}
-
+	
+	public int getQuantTelefones() {
+		return telefones.size();
+	}
+	
 
 	public String getNome() {
 		return nome;
@@ -39,16 +43,6 @@ public class Contato {
 	}
 
 
-	public List<String> getEmails() {
-		return emails;
-	}
-
-
-	public void setEmails(List<String> emails) {
-		this.emails = emails;
-	}
-
-
 	public Integer getIdade() {
 		return idade;
 	}
@@ -58,7 +52,7 @@ public class Contato {
 		this.idade = idade;
 	}
 
-
+	
 
 
 }

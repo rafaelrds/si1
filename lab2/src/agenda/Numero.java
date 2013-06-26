@@ -23,6 +23,12 @@ public class Numero {
 	public String getNomeOperadora() {
 		return nomeOperadora;
 	}
+
+	@Override
+	public String toString() {
+		return "Numero [numero=" + numero + ", numOperadora=" + numOperadora
+				+ ", nomeOperadora=" + nomeOperadora + "]";
+	}
 	
 	
 	
