@@ -15,7 +15,7 @@ public class Agenda {
 		return listaDeContatos.size();
 	}
 
-	public void addContato(String nome, ArrayList<Numero> telefones) {
+	public void addContato(String nome, List<Numero> telefones) {
 		Contato contato = new Contato(nome,telefones);
 		listaDeContatos.add(contato);
 	}

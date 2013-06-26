@@ -12,8 +12,8 @@ public class TestContato extends TestCase {
 	public void testaCampos(){
 		
 		ArrayList<Numero> telefones = new ArrayList<Numero>();
-		Numero num1 = new Numero("96246511", "41", "TIM");
-		Numero num2 = new Numero("86253015", "31", "Oi");
+		Numero num1 = new Numero("96246511", "TIM");
+		Numero num2 = new Numero("86253015", "Oi");
 		telefones.add(num1);
 		telefones.add(num2);
 		

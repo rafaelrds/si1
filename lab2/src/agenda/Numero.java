@@ -2,14 +2,11 @@ package agenda;
 
 public class Numero {
 	private String numero;
-	private String numOperadora;
-	private String nomeOperadora;
+	private String operadora;
 	
-	public Numero(String numero, String numOperadora, String nomeOperadora) {
-		
+	public Numero(String numero, String numOperadora) {
 		this.numero = numero;
-		this.numOperadora = numOperadora;
-		this.nomeOperadora = nomeOperadora;
+		this.operadora = numOperadora;
 	}
 
 	public String getNumero() {
@@ -17,17 +14,13 @@ public class Numero {
 	}
 
 	public String getNumOperadora() {
-		return numOperadora;
+		return operadora;
 	}
 
-	public String getNomeOperadora() {
-		return nomeOperadora;
-	}
 
 	@Override
 	public String toString() {
-		return "Numero [numero=" + numero + ", numOperadora=" + numOperadora
-				+ ", nomeOperadora=" + nomeOperadora + "]";
+		return "Numero [numero=" + numero + ", numOperadora=" + operadora + "]";
 	}
 	
 	
