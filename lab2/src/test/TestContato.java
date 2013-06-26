@@ -1,7 +1,10 @@
-package agenda;
+package test;
 
 import java.util.ArrayList;
 import org.junit.Test;
+
+import agenda.Contato;
+import agenda.Numero;
 
 import junit.framework.TestCase;
 
@@ -22,7 +25,6 @@ public class TestContato extends TestCase {
 		
 		Contato contato = new Contato("Rafael", telefones);
 		assertEquals("Rafael", contato.getNome());
-		System.out.println(contato.getTelefones().toString());
 	}
 
 

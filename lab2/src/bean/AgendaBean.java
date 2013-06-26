@@ -1,4 +1,4 @@
-package agenda;
+package bean;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,7 +7,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import agenda.AgendaBean;
+import bean.AgendaBean;
+
+import agenda.Agenda;
 import agenda.Numero;
 
 
@@ -29,10 +31,10 @@ public class AgendaBean {
 
 
 
-	public void addContato(String nome, String numero, String op,
+	public void addContato(String nome, String numero, String operadora,
 			 String idade, String email) {
 
-		Numero nmero = new Numero(numero, op);
+		Numero nmero = new Numero(numero, operadora);
 		List<Numero> numeros = new ArrayList<Numero>();
 		numeros.add(nmero);
 		agenda.addContato(nome, numeros);
