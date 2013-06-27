@@ -26,11 +26,15 @@
 		<p:dialog header="Cadastrar" widgetVar="dialogCadastrar" modal="true">
 			<p:panelGrid id="panelCadastrar" columns="2">
 				<h:outputText value="Nome:" />
-				<p:inputText value="#{pessoaBean.pessoa.nome}" />
-				<h:outputText value="Endereco:" />
-				<p:inputText value="#{pessoaBean.pessoa.endereco}" />
-				<h:outputText value="Telefone:" />
-				<p:inputText value="#{pessoaBean.pessoa.telefone}" />
+				<p:inputText value="#{controller.nome}" />
+				<h:outputText value="Numero:" />
+				<p:inputText value="#{controller.numero}" />
+				<h:outputText value="Operadora:" />
+				<p:inputText value="#{controller.operadora}" />
+				<h:outputText value="Idade:" />
+				<p:inputText value="#{controller.idade}" />
+				<h:outputText value="Email:" />
+				<p:inputText value="#{controller.email}" />
 			</p:panelGrid>
 			<p:commandButton value="Cadastrar"
 				actionListener="#{controller.addContato}" oncomplete="dialogCadastrar.hide()"/>

@@ -7,6 +7,7 @@ public class Contato {
 	private String nome;
 	private List<Numero> telefones;
 	private Integer idade;
+	private String email;
 	
 
 
@@ -50,6 +51,14 @@ public class Contato {
 
 	public void setIdade(Integer idade) {
 		this.idade = idade;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	
