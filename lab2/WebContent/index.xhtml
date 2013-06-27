@@ -8,17 +8,36 @@
 	xmlns:p="http://primefaces.org/ui"  >
 
 
-<h:head>
-
-</h:head>
+	<h:head>
+		 <title>Agenda</title>
+	</h:head>
 
 <h:body>
-<p:button value="Cadastrar">
-    <f:param name="productId" value="10" />
-</p:button>
-<p:button value="Buscar">
-    <f:param name="productId" value="10" />
-</p:button>
+
+<h:form id="formPrincipal">
+ 
+ 	<p:commandButton value="Cadastrar" id="cadastrar"
+			oncomplete="dialogCadastrar.show()" />
+	</h:form>
+ 
+	
+ 
+	<h:form id="formCadastrar">
+		<p:dialog header="Cadastrar" widgetVar="dialogCadastrar" modal="true">
+			<p:panelGrid id="panelCadastrar" columns="2">
+				<h:outputText value="Nome:" />
+				<p:inputText value="#{pessoaBean.pessoa.nome}" />
+				<h:outputText value="Endereco:" />
+				<p:inputText value="#{pessoaBean.pessoa.endereco}" />
+				<h:outputText value="Telefone:" />
+				<p:inputText value="#{pessoaBean.pessoa.telefone}" />
+			</p:panelGrid>
+			<p:commandButton value="Cadastrar"
+				actionListener="#{controller.addContato}" oncomplete="dialogCadastrar.hide()"/>
+		</p:dialog>
+	</h:form>
+
+
 
 </h:body>
 </html>

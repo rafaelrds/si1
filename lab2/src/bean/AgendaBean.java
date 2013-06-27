@@ -1,12 +1,9 @@
 package bean;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
-
 import bean.AgendaBean;
 
 import agenda.Agenda;
@@ -18,16 +15,6 @@ import agenda.Numero;
 public class AgendaBean {
 	Agenda agenda = new Agenda();
 
-
-
-	public void redirect(){
-
-		try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect("cadastro.xhtml");
-		} catch (IOException e) {
-			System.out.println("opa");;
-		} 
-	}
 
 
 
