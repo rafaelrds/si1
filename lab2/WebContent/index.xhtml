@@ -18,9 +18,12 @@
  
  	<p:commandButton value="Cadastrar" id="cadastrar"
 			oncomplete="dialogCadastrar.show()" />
-	</h:form>
- 
+
+	<p:commandButton value="Listar" id="listar"
+			oncomplete="dialogListar.show()" />
 	
+	
+</h:form>
  
 	<h:form id="formCadastrar">
 		<p:dialog header="Cadastrar" widgetVar="dialogCadastrar" modal="true">
@@ -37,7 +40,36 @@
 				<p:inputText value="#{controller.email}" />
 			</p:panelGrid>
 			<p:commandButton value="Cadastrar"
-				actionListener="#{controller.addContato}" oncomplete="dialogCadastrar.hide()"/>
+				actionListener="#{controller.addContato}" oncomplete="dialogCadastrar.hide()" />
+		</p:dialog>
+	</h:form>
+	
+	<h:form id="formListar">
+		<p:dialog header="Lista de Contatos" widgetVar="dialogListar" modal="true">
+			<p:panelGrid id="panelListar" columns="5">
+				<p:dataTable var="contato" value="#{controller.resultado}">
+					<p:column headerText="Nome">
+						<h:outputText value="#{contato.nome}" />
+					</p:column>
+
+					<p:column headerText="Quantidade de numeros">
+						<h:outputText value="#{contato.qntNumero}" />
+					</p:column>
+
+					<p:column headerText="Numeros">
+						<h:outputText value="#{contato.numeros}" />
+					</p:column>
+
+					<p:column headerText="Idade">
+						<h:outputText value="#{contato.idade}" />
+					</p:column>
+
+					<p:column headerText="Emails">
+						<h:outputText value="#{contato.email}" />
+					</p:column>
+
+				</p:dataTable>
+			</p:panelGrid>
 		</p:dialog>
 	</h:form>
 
