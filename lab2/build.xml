@@ -6,110 +6,132 @@
                                                 
      ====================================================================== -->
 <project name="Lab02RafaelRego" default="" basedir=".">
-	
+
 	<!-- ================================= 
-	          propriedades do projeto              
-	         ================================= -->
-	<property name="sysName" value="Lab02RafaelRego"/> <!-- Defina o nome do sistema sem espacos. -->
+              propriedades do projeto              
+             ================================= -->
+	<property name="sysName" value="Lab02RafaelRego"/>
+	<!-- Defina o nome do sistema sem espacos. -->
 	<property name="warFile" value="dist/${sysName}.war"/>
 	<property name="src" value="\${basedir}/src"/>
 	<property name="build" value="bin"/>
 	<property name="dist" value="dist"/>
+	<property name="reports.tests" value="tests"/>
 	<property name="doc" value="doc"/>
 	<property name="webLibs" value="WebContent/WEB-INF/lib"/>
 	<property name="webXML" value="WebContent/WEB-INF/web.xml"/>
 	<property name="sysLibs" value="lib"/>
 	<property name="classTeste" value="easyaccept"/>
 	<property name="webContent" value="WebContent" />
-	<property name="CATALINA_HOME" value="C:\tomcat" /> <!-- Defina o local da pasta do Tomcat. -->
+	<property name="CATALINA_HOME" value="C:\tomcat" />
+	<!-- Defina o local da pasta do Tomcat. -->
 
 	<!-- - - - - - - - - - - - - - - - - - 
           target: init                      
          - - - - - - - - - - - - - - - - - -->
-    <target name="init">
-    	<echo>Criando diretorio de biuld e dist.</echo>
-    	<mkdir dir="${build}"/>
-    	<mkdir dir="${dist}"/>
-    	<mkdir dir="${doc}"/>
-    </target>
-	
+	<target name="init">
+		<echo>Criando diretorio de biuld e dist.</echo>
+		<mkdir dir="${build}"/>
+		<mkdir dir="${dist}"/>
+		<mkdir dir="${doc}"/>
+		<mkdir dir="${reports.tests}"/>
+	</target>
+
 	<!-- ================================= 
           target: compila              
          ================================= -->
 	<path id="compile.classpath">
 		<fileset dir="${webLibs}">
-    		<include name="*.jar"/>
+			<include name="*.jar"/>
 		</fileset>
 		<fileset dir="${sysLibs}">
 			<include name="*.jar"/>
 		</fileset>
-	</path>	
-			
-    <target name="compila" depends="init" description="Compila o projeto.">
-        <echo>Compilando o projeto.</echo>
-    	<javac srcdir="src" destdir="${build}" debug="true">
-    		<classpath refid="compile.classpath" />
-    	</javac>
+	</path>
+
+	<target name="compila" depends="init" description="Compila o projeto.">
+		<echo>Compilando o projeto.</echo>
+		<javac srcdir="src" destdir="${build}" debug="true">
+			<classpath refid="compile.classpath" />
+		</javac>
 		<echo>Processo de compilacao concluido com sucesso.</echo>
-    </target>
-	
+	</target>
+	<!-- ================================= 
+                  target: test   
+             ================================= -->
+	<target name="testa" depends="compila">
+		<junit printsummary="yes" haltonfailure="no">
+			<formatter type="xml" />
+			<!-- Indica o caminho dos arquivos .class (incluindo as bibliotecas)-->
+			<classpath>
+				<fileset dir="${sysLibs}" includes="*.jar" />
+				<pathelement location="${build}" />
+			</classpath>
+			<!-- Executa todos os arquivos no formato **/*Test*.class , ou seja, todos os .class com Test no nome-->
+			<batchtest fork="yes" todir="${reports.tests}">
+				<fileset dir="${build}" includes="**/*Test*.class" />
+			</batchtest>
+		</junit>
+	</target>
 	<!-- ================================= 
           target: war              
          ================================= -->
-    <target name="war" depends="compila" description="Criar war do projeto.">
-    	<echo>Criando War do projeto.</echo>
-        <war destfile="${warFile}" webxml="${webXML}">
-	    	<classes dir="${build}" />
-        	<fileset dir="${webContent}"/>
-        	<lib dir="${webLibs}"/>
-	    </war>
-    </target>
+	<target name="war" depends="compila" description="Criar war do projeto.">
+		<echo>Criando War do projeto.</echo>
+		<war destfile="${warFile}" webxml="${webXML}">
+			<classes dir="${build}" />
+			<fileset dir="${webContent}"/>
+			<lib dir="${webLibs}"/>
+		</war>
+	</target>
 
 	<!-- ================================= 
-	          target: limpa              
-	     ================================= -->
-    <target name="limpa">
-        <echo>Limpando........</echo>
-    	<delete dir="${dist}"/>
-    	<delete dir="${build}"/>
-    	<delete dir="${doc}"/>
-    	<delete dir="${CATALINA_HOME}\webapps">
-    		<filename name="*"/>
-    	</delete>
-    	<delete dir="${CATALINA_HOME}\webapps\${sysName}"/>
-    	<delete file="${sysName}.jar"/>
+              target: limpa              
+         ================================= -->
+	<target name="limpa">
+		<echo>Limpando........</echo>
+		<delete dir="${dist}"/>
+		<delete dir="${build}"/>
+		<delete dir="${doc}"/>
+		<delete dir="${reports.tests}"/>
+		<delete dir="${CATALINA_HOME}\webapps">
+			<filename name="*"/>
+		</delete>
+		<delete dir="${CATALINA_HOME}\webapps\${sysName}"/>
+		<delete file="${sysName}.jar"/>
 		<delete includeemptydirs="true">
 			<fileset dir="${basedir}" >
-			    <include name="**/*.orig"/>
+				<include name="**/*.orig"/>
 			</fileset>
 		</delete>
-    	<echo>Processo de Limpeza concluido com sucesso.</echo>
-    </target>
-	
+		<echo>Processo de Limpeza concluido com sucesso.</echo>
+	</target>
+
 	<!-- ================================= 
-	          target: deploy              
-	     ================================= -->
+              target: deploy              
+         ================================= -->
 	<target name="deploy" depends="war">
 		<copy todir="${CATALINA_HOME}\webapps" file="dist/${sysName}.war"/>
 	</target>
-	
+
 	<!-- ================================= 
-	          target: start         
-	     ================================= -->     
-	<target name="start" depends="stop,limpa,deploy">
-		<exec executable="cmd"> 
-			<arg value="/c" /> 
+              target: start         
+         ================================= -->
+	<target name="start" depends="stop,limpa,deploy,testa">
+		<exec executable="cmd">
+			<arg value="/c" />
 			<arg value="${CATALINA_HOME}\bin\startup.bat" />
 		</exec>
 	</target>
-		
+
 	<!-- ================================= 
-	          target: stop      
-	     ================================= -->
+              target: stop      
+         ================================= -->
 	<target name="stop">
-		<exec executable="cmd"> 
-			<arg value="/c" /> 
+		<exec executable="cmd">
+			<arg value="/c" />
 			<arg value="${CATALINA_HOME}\bin\shutdown.bat" />
 		</exec>
 	</target>
+
 </project>
