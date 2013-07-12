@@ -1,34 +1,28 @@
-package tasklist;
+package model.data;
 
-import exceptions.*;
 
-/**
- * 
- * @author tiaraju
- *
- */
 public class Data implements Comparable<Data> {
 
 	private int day;
 	private int year;
 	private int month;
 
-	public Data(int day, int month, int year) throws InvalidDayException,InvalidMonthException, InvalidYearException {
+	public Data(int day, int month, int year) throws IllegalArgumentException {
 		if (day < 1 || day > 31)
-			throw new InvalidDayException();
+			throw new IllegalArgumentException("Dia invalido");
 		if (month == 2 && day > 29)
-			throw new InvalidMonthException();
+			throw new IllegalArgumentException("Mes invalido");
 		if (month == 2 && day == 29) {
 			if (!(year % 4 == 0)) {
-				throw new InvalidYearException();
+				throw new IllegalArgumentException("Ano invalido");
 			} else {
 				if ((year % 100 == 0))
-					throw new InvalidYearException();
+					throw new IllegalArgumentException("Ano invalido");
 			}
 		}
 		if (day == 31) {
 			if (month == 2 || month == 4 || month == 6 || month == 9 || month == 11)
-				throw new InvalidMonthException();
+				throw new IllegalArgumentException("Mês invalido");
 		}		
 
 		this.day = day;
@@ -37,11 +31,11 @@ public class Data implements Comparable<Data> {
 	}
 
 
-	public void setAno(int ano) throws InvalidYearException {
+	public void setAno(int ano) throws IllegalArgumentException {
 		if (ano > 1900) {
 			this.year = ano;
 		} else {
-			throw new InvalidYearException();
+			throw new IllegalArgumentException("Ano invalido");
 		}
 	}
 
@@ -52,11 +46,11 @@ public class Data implements Comparable<Data> {
 		return day;
 	}
 	
-	public void setDia(int dia) throws InvalidDayException {
+	public void setDia(int dia) throws IllegalArgumentException {
 		if (dia >= 1 && dia <= 31) {
 			this.day = dia;
 		} else {
-			throw new InvalidDayException();
+			throw new IllegalArgumentException("Dia invalido");
 		}
 	}
 	
@@ -67,11 +61,11 @@ public class Data implements Comparable<Data> {
 		return month;
 	}
 
-	public void setMes(int mes) throws InvalidMonthException {
+	public void setMes(int mes) throws IllegalArgumentException {
 		if (mes >= 1 && mes <= 12) {
 			this.month = mes;
 		} else {
-			throw new InvalidMonthException();
+			throw new IllegalArgumentException("Mes invalido");
 		}
 	}
 

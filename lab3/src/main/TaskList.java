@@ -2,14 +2,12 @@ package main;
 
 import java.util.Scanner;
 
-import tasklist.*;
-import exceptions.*;
+import model.*;
+import model.data.Data;
+import model.data.DateConclusion;
+import model.data.DateCriation;
+import model.data.Hour;
 import bean.Controller;
-/**
- * 
- * @author tiaraju
- *
- */
 public class TaskList{
 
 	private static Controller controller = new Controller();
@@ -89,17 +87,13 @@ public class TaskList{
 			}
 	}
 
-	private static Data formateDate(String data)
-			throws NumberFormatException, InvalidDayException,
-			InvalidMonthException, InvalidYearException {
+	private static Data formateDate(String data) throws IllegalArgumentException {
 		return new Data(Integer.parseInt(data.substring(0, 2)),
 				Integer.parseInt(data.substring(3, 5)), Integer.parseInt(data
 						.substring(6, 10)));
 	}
 
-	private static Hour formateHour(String hora)
-			throws NumberFormatException, InvalidHourException,
-			InvalidMinuteException {
+	private static Hour formateHour(String hora) throws IllegalArgumentException {
 		return new Hour(Integer.parseInt(hora.substring(0, 2)),
 				Integer.parseInt(hora.substring(3, 5)));
 	}

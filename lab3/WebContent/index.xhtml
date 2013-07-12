@@ -21,7 +21,7 @@
 				<p:commandButton value="Nova Tarefa" action="#{taskbean.addTarefa}" styleClass="avesettings" rendered="true" > 
 			</p:commandButton>
 				
-					<p:dataTable var="tarefa" value="#{taskbean.controller.tarefas}"
+					<p:dataTable var="tarefa" value="#{taskbean.controller.tarefas}" style="red"
 						rowKey="#{tarefa.nome}" selection="#{taskbean.tarefa}"
 						selectionMode="single">
 						<p:column headerText="Tarefa">
@@ -73,7 +73,7 @@
 		<h:form>
 			<fieldset>
 				<h:head><center>
-					<h1>Tarefas Completadas</h1>
+					<h1>Tarefas Completas</h1>
 				</center></h:head>
 				<h:form>
 
@@ -93,9 +93,6 @@
 							<h:outputText value="#{task.dataCriacao}" />
 						</p:column>
 
-						<p:column headerText="Concluido">
-							<h:outputText value="#{task.status}" />
-						</p:column>
 						<p:column headerText="Data da Conclusao">
 							<h:outputText value="#{task.dataConclusao}" />
 						</p:column>

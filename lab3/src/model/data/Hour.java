@@ -1,19 +1,13 @@
-package tasklist;
+package model.data;
 
-import exceptions.*;
-/**
- * 
- * @author tiaraju
- *
- */
 public class Hour implements Comparable<Hour>{
 
 	private int hora;
 	private int minutos;
 	
-	public Hour(int hora, int minutos) throws InvalidHourException, InvalidMinuteException{
-		if(hora > 23 || hora < 0) throw new InvalidHourException();
-		if(minutos > 59 || minutos < 0) throw new InvalidMinuteException();
+	public Hour(int hora, int minutos) throws IllegalArgumentException{
+		if(hora > 23 || hora < 0) throw new IllegalArgumentException("hora invalida");
+		if(minutos > 59 || minutos < 0) throw new IllegalArgumentException("Minuto invalido");
 		this.hora = hora;
 		this.minutos = minutos;
 	}
@@ -25,8 +19,8 @@ public class Hour implements Comparable<Hour>{
 		return hora;
 	}
 
-	public void setHora(int hora) throws InvalidHourException {
-		if(hora > 23 || hora < 0) throw new InvalidHourException();
+	public void setHora(int hora) throws IllegalArgumentException {
+		if(hora > 23 || hora < 0) throw new IllegalArgumentException("Hora invalida");
 		this.hora = hora;
 	}
 
@@ -34,8 +28,8 @@ public class Hour implements Comparable<Hour>{
 		return minutos;
 	}
 
-	public void setMinutos(int minutos) throws InvalidMinuteException {
-		if(minutos > 59 || minutos < 0) throw new InvalidMinuteException();
+	public void setMinutos(int minutos) throws IllegalArgumentException {
+		if(minutos > 59 || minutos < 0) throw new IllegalArgumentException("Minuto invalido");
 		this.minutos = minutos;
 	}
 

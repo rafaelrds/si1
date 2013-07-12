@@ -1,6 +1,8 @@
-package tasklist;
+package model.data;
 
 import java.util.Comparator;
+
+import model.Task;
 public class DateConclusion implements Comparator<Task>{
 	@Override
 	public int compare(Task task1, Task task2) {

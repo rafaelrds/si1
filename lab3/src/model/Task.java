@@ -1,16 +1,13 @@
-package tasklist;
+package model;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import exceptions.*;
-/**
- * 
- * @author tiaraju
- *
- */
+import model.data.Data;
+import model.data.Hour;
+
 public class Task implements Comparable<Task> {
 
 	private String nome;
@@ -23,9 +20,7 @@ public class Task implements Comparable<Task> {
 	private Date date = new Date();
 	private Hour horaCriacao;
 
-	public Task(String nome) throws NumberFormatException,
-			InvalidHourException, InvalidMinuteException,
-			InvalidDayException, InvalidMonthException, InvalidYearException {
+	public Task(String nome) throws IllegalArgumentException {
 		this.nome = nome;
 		this.status = false;
 		this.dataCriacao = getDataSystem(new SimpleDateFormat("dd/MM/yyyy")
@@ -38,8 +33,7 @@ public class Task implements Comparable<Task> {
 				.format(this.date).substring(3, 5)));
 	}
 
-	private Data getDataSystem(String data) throws NumberFormatException,
-			InvalidDayException, InvalidMonthException, InvalidYearException {
+	private Data getDataSystem(String data) throws IllegalArgumentException {
 		return new Data(Integer.parseInt(data.substring(0, 2)),
 				Integer.parseInt(data.substring(3, 5)), Integer.parseInt(data
 						.substring(6, 10)));
@@ -73,15 +67,14 @@ public class Task implements Comparable<Task> {
 		return dataConclusao;
 	}
 
-	public void setDataConclusao(Data dataConclusao)
-			throws InvalidDateException {
+	public void setDataConclusao(Data dataConclusao) throws IllegalArgumentException{
 		if (!dataConclusao.equals(new Data())) {
 			if (this.getDataCriacao().compareTo(dataConclusao) > 0) {
-				throw new InvalidDateException();
+				throw new IllegalArgumentException("Data invalida");
 			}
 			if (this.getDataCriacao().compareTo(dataConclusao) == 0) {
 				if (this.getHoraConclusao().compareTo(this.getHoraCriacao()) > 0) {
-					throw new InvalidDateException();
+					throw new IllegalArgumentException("Data invalida");
 				}
 			}
 		}

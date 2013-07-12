@@ -1,6 +1,8 @@
-package tasklist;
+package model.data;
 
 import java.util.Comparator;
+
+import model.Task;
 public class DateCriation implements Comparator<Task>{
 	
 	@Override

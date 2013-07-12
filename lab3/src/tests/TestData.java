@@ -1,11 +1,11 @@
 package tests;
 
+import model.data.Data;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.internal.runners.statements.Fail;
-
-import tasklist.Data;
 
 public class TestData {
 

@@ -5,14 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import exceptions.*;
-import tasklist.Data;
-import tasklist.Task;
-/**
- * 
- * @author tiaraju
- *
- */
+import model.Task;
+import model.data.Data;
 public class Controller {
 
 	private List<Task> tarefas;
@@ -74,16 +68,16 @@ public class Controller {
 		this.tarefasCompletas = new ArrayList<Task>();
 		this.tarefafsIncompletas = new ArrayList<Task>();
 		try {
-			Task task1 = new Task("Reuniao");
-			Task task2 = new Task("Consulta");
-			Task task3 = new Task("Aula");
-			Task task4 = new Task("Appointment");
-			Task task5 = new Task("Nothing");
-			task1.setDataConclusao(new Data(10,11,2015));
+			Task task1 = new Task("Aula de SI");
+			Task task2 = new Task("Terminar a graduacao");
+			Task task3 = new Task("Terminar mestrado");
+			Task task4 = new Task("Abrir uma empresa");
+			Task task5 = new Task("Comprar a Google");
+			task1.setDataConclusao(new Data(16,07,2013));
 			task2.setDataConclusao(new Data(12,8,2015));
-			task3.setDataConclusao(new Data(14,5,2015));
-			task4.setDataConclusao(new Data(16,9,2015));
-			task5.setDataConclusao(new Data(23,7,2015));
+			task3.setDataConclusao(new Data(14,5,2017));
+			task4.setDataConclusao(new Data(16,9,2017));
+			task5.setDataConclusao(new Data(23,7,2030));
 			adicionaTarefa(task1);
 			adicionaTarefa(task2);
 			adicionaTarefa(task5);
@@ -119,15 +113,11 @@ public class Controller {
 		this.getTarefas().remove(Task);
 	}
 
-	public void editTarefa(Task oldTask, Task newTask)
-			throws InvalidDateException, InvalidNameException,
-			NumberFormatException, InvalidHourException,
-			InvalidMinuteException, InvalidDayException,
-			InvalidMonthException, InvalidYearException {
+	public void editTarefa(Task oldTask, Task newTask) throws IllegalArgumentException{
 
 		if (this.getTarefas().contains(newTask)) {
 			if (!oldTask.getNome().equals(newTask.getNome())) {
-				throw new InvalidNameException();
+				throw new IllegalArgumentException("Nome invalido");
 			}
 		}
 		for (int i = 0; i < this.getTarefas().size(); i++) {

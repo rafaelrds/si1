@@ -9,9 +9,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import tasklist.*;
-
-import exceptions.*;
+import model.*;
+import model.data.Data;
+import model.data.DateConclusion;
+import model.data.DateCriation;
+import model.data.Hour;
 
 @ManagedBean(name = "taskbean")
 @SessionScoped
@@ -28,7 +30,7 @@ public class TaskBean implements Serializable {
 	private boolean status;
 	private Task task;
 	
-	public TaskBean() throws NumberFormatException, InvalidHourException, InvalidMinuteException, InvalidDayException, InvalidMonthException, InvalidYearException {
+	public TaskBean() throws IllegalArgumentException {
 		this.controller = new Controller();
 	}
 	
@@ -112,9 +114,7 @@ public class TaskBean implements Serializable {
 		return "cadastro.xhtml";
 	}
 	
-	public void cadastraTarefa() throws NumberFormatException,
-			InvalidDayException, InvalidMonthException, InvalidYearException,
-			InvalidHourException, InvalidMinuteException {
+	public void cadastraTarefa() throws IllegalArgumentException {
 
 		if (!validateNome()) {
 			msgUsuario("Eh necessario dar um nome a tarefa");
@@ -270,17 +270,13 @@ public class TaskBean implements Serializable {
 		this.controller.ordenaIncompletas(this.getComparador());
 	}
 
-	private Data getConclusionDate(String conclusiondate)
-			throws NumberFormatException, InvalidDayException,
-			InvalidMonthException, InvalidYearException {
+	private Data getConclusionDate(String conclusiondate) throws IllegalArgumentException {
 		return new Data(Integer.parseInt(conclusiondate.substring(0, 2)),
 				Integer.parseInt(conclusiondate.substring(3, 5)),
 				Integer.parseInt(conclusiondate.substring(6, 10)));
 	}
 
-	private Hour getConclusionTime(String conclusionTime)
-			throws NumberFormatException, InvalidHourException,
-			InvalidMinuteException {
+	private Hour getConclusionTime(String conclusionTime) throws IllegalArgumentException {
 		return new Hour(Integer.parseInt(conclusionTime.substring(0, 2)),
 				Integer.parseInt(conclusionTime.substring(3, 5)));
 	}
