@@ -1,11 +1,9 @@
 package tests;
 
+import static org.junit.Assert.*;
 import model.data.Data;
-
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.internal.runners.statements.Fail;
 
 public class TestData {
 
@@ -21,21 +19,21 @@ public class TestData {
 	
 	@Test
 	public void TestaDia(){
-		Assert.assertTrue(data1.getDia()>0);
-		Assert.assertTrue((data2.getDia()>0));
+		assertTrue(data1.getDia()>0);
+		assertTrue((data2.getDia()>0));
 	
 	}
 	@Test
 	public void TestaMes(){
-		Assert.assertTrue(data1.getMes()>0 && data1.getMes()<13);
-		Assert.assertTrue((data2.getMes()>0));
+		assertTrue(data1.getMes()>0 && data1.getMes()<13);
+		assertTrue((data2.getMes()>0));
 	
 	}
 	
 	@Test
 	public void TestaAno(){
-		Assert.assertTrue(data1.getAno()>0);
-		Assert.assertTrue((data2.getAno()>0));
+		assertTrue(data1.getAno()>0);
+		assertTrue((data2.getAno()>0));
 	
 	}
 

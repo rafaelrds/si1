@@ -54,9 +54,9 @@ public class TaskList{
 		Task Task = removeTask();
 		if (Task != null) {
 			controller.removeTarefa(Task);
-			System.out.println("Tarefa Removida");
+			System.out.println("A tarefa foi Removida");
 		} else {
-			System.out.println("Tarefa nao pode ser removida");
+			System.out.println("A tarefa nao pode ser removida");
 		}
 	}
 
@@ -67,10 +67,10 @@ public class TaskList{
 		System.out.println("Descricao: ");
 		String descricao = sc.next();
 
-		System.out.println("Data(dd/mm/yyyy): ");
+		System.out.println("Prazo de conclusao (dd/mm/yyyy): ");
 		String data = sc.next();
 
-		System.out.println("Hora(hh:mm):");
+		System.out.println("Horario de conclusao (hh:mm):");
 		String hora = sc.next();
 		
 			try {
@@ -101,12 +101,12 @@ public class TaskList{
 	public static void listarTasksCompletas() {
 		if (controller.getTarefasCompletas().size() > 0) {
 			System.out
-					.println("Ver por: \n 1 - Data de Conclusao \n 2 - Data de Criacao");
+					.println(" 1 - Data de conclusao \n 2 - Data de Criacao");
 			String escolha = sc.next();
 			if (escolha.equals("1")) {
 				controller.ordenaCompletas(new DateConclusion());
 			} else if (escolha.equals("2")) {
-				controller.ordenaCompletas(new DateConclusion());
+				controller.ordenaCompletas(new DateCriation());
 			}
 			System.out.println("Tarefas concluidas: \n");
 			for (Task Task : controller.getTarefasCompletas()) {

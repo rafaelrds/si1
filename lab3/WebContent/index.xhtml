@@ -18,9 +18,6 @@
 				</h:head>
 				<h:form>
 				
-				<p:commandButton value="Nova Tarefa" action="#{taskbean.addTarefa}" styleClass="avesettings" rendered="true" > 
-			</p:commandButton>
-				
 					<p:dataTable var="tarefa" value="#{taskbean.controller.tarefas}" style="red"
 						rowKey="#{tarefa.nome}" selection="#{taskbean.tarefa}"
 						selectionMode="single">
@@ -28,8 +25,8 @@
 							<h:outputText value="#{tarefa.nome}" />
 						</p:column>
 
-						<p:column headerText="Descricao">
-							<h:outputText value="#{tarefa.descricao}" />
+						<p:column headerText="Descricao" >
+							<h:outputText value="#{tarefa.descricao}"  />
 						</p:column>
 
 						<p:column headerText="Data de Criacao">
@@ -44,7 +41,8 @@
 
 					</p:dataTable>
 				</h:form>
-				<br />
+				<p:commandButton value="Nova Tarefa" action="#{taskbean.addTarefa}" styleClass="avesettings" rendered="true" /> 
+				
 				<p:selectOneMenu value="#{taskbean.ordenacao}">
 					<f:selectItem itemValue="" itemLabel="Ordenar:" />
 					<f:selectItem itemValue="dataCriacao" itemLabel="Data de criacao" />

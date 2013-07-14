@@ -18,5 +18,7 @@
 	<classpathentry kind="lib" path="lib/jsf-impl.jar"/>
 	<classpathentry kind="lib" path="lib/junit-4.11.jar"/>
 	<classpathentry kind="lib" path="lib/primefaces-3.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/all-themes-1.0.10.jar"/>
+	<classpathentry kind="lib" path="lib/all-themes-1.0.10.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
