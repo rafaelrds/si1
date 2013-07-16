@@ -115,7 +115,6 @@ public class TaskBean implements Serializable {
 	}
 	
 	public void cadastraTarefa() throws IllegalArgumentException {
-
 		if (!validateNome()) {
 			msgUsuario("Eh necessario dar um nome a tarefa");
 			return;
