@@ -7,6 +7,7 @@ import java.util.List;
 
 import model.Task;
 import model.data.Data;
+import model.data.Hour;
 public class Controller {
 
 	private List<Task> tarefas;
@@ -78,6 +79,19 @@ public class Controller {
 			task3.setDataConclusao(new Data(14,5,2017));
 			task4.setDataConclusao(new Data(16,9,2017));
 			task5.setDataConclusao(new Data(23,7,2030));
+			Hour hora1 = new Hour(23, 23);
+			Hour hora2 = new Hour(22, 21);
+			Hour hora3 = new Hour(20, 15);
+			task1.setHoraConclusao(hora1);
+			task2.setHoraConclusao(hora2);
+			task3.setHoraConclusao(hora1);
+			task4.setHoraConclusao(hora3);
+			task5.setHoraConclusao(hora1);
+			task1.setDescricao("Terças e sextas");
+			task2.setDescricao("Though work");
+			task3.setDescricao("Definir a area");
+			task4.setDescricao("Conseguir um bom sócio");
+			task5.setDescricao("hahaha");
 			adicionaTarefa(task1);
 			adicionaTarefa(task2);
 			adicionaTarefa(task5);
@@ -87,9 +101,9 @@ public class Controller {
 		}
 	}
 	
-	public void mudaStatusDaTask(Task Task) {
+	public void mudaStatusDaTask(Task task1) {
 		for (Task task : this.tarefas) {
-			if (Task.equals(Task)) {
+			if (task1.getNome().equals(task.getNome())) {
 				if (!task.getStatus()) {
 					task.setStatus(true);
 					addTarefaCompleta(task);

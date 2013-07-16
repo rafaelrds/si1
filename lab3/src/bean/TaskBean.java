@@ -159,6 +159,7 @@ public class TaskBean implements Serializable {
 			this.task.setStatus(true);
 			this.controller.addTarefaCompleta(this.getTarefa());
 			this.controller.removeTarefaIncompleta(this.getTarefa());
+			
 		} else if (this.getTarefa().getStatus() == true) {
 			msgUsuario("operacao invalida");
 			return;
@@ -166,6 +167,7 @@ public class TaskBean implements Serializable {
 			msgUsuario("Invalida");
 			return;
 		}
+		
 	}
 	
 	public void removeTarefa() {

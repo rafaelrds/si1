@@ -45,6 +45,7 @@ public class TaskList{
 				concludeTask();
 				break;
 			case "7":
+				System.out.println("Sistema encerrado pelo usuario");
 				System.exit(1);
 			}
 		}
@@ -56,7 +57,7 @@ public class TaskList{
 			controller.removeTarefa(Task);
 			System.out.println("A tarefa foi Removida");
 		} else {
-			System.out.println("A tarefa nao pode ser removida");
+			System.out.println("A tarefa NAO pode ser removida");
 		}
 	}
 
@@ -82,8 +83,7 @@ public class TaskList{
 				controller.adicionaTarefa(Task);
 				System.out.println("Tarefa cadastrada com sucesso \n");
 			} catch (Exception e) {
-				System.out
-						.println("A tarefa nao foi criada ");
+				System.out.println("A tarefa NAO foi criada ");
 			}
 	}
 
@@ -160,14 +160,15 @@ public class TaskList{
 	private static Task removeTask() {
 		System.out.println("Digite o nome da Tarefa: \n");
 		String nome = sc.next();
-		for (Task Task : controller.getTarefas()) {
-			if (Task.getNome().equals(nome)) {
+		for (Task task : controller.getTarefas()) {
+			if (task.getNome().equals(nome)) {
 				System.out.println("Deseja remover? (s/n) \n"
-						+ Task);
+						+ task);
 				String escolha = sc.next();
-				if (escolha.equals("s")|| escolha.equals("sim")) {
-					return Task;
-				} else if (escolha.equals("n") || escolha.equals("nao")) {
+				if (escolha.equals("s") | escolha.equals("sim")) {
+					controller.removeTarefa(task);
+					return task;
+				} else if (escolha.equals("n") | escolha.equals("nao")) {
 					System.out.println("Cancelado");
 					return null;
 				}
@@ -226,7 +227,7 @@ public class TaskList{
 					Task.setDataConclusao(formateDate(data));
 					Task.setHoraConclusao(formateHour(hora));
 				} catch (Exception ex) {
-					System.out.println("Edicao nao concluida");
+					System.out.println("Edicao NAO concluida");
 				}
 			
 		}
