@@ -19,7 +19,7 @@
 				<h:form>
 				
 					<p:dataTable var="tarefa" value="#{taskbean.controller.tarefas}" emptyMessage="Nenhuma nova tarefa por enquanto ;)"
-						rowKey="#{tarefa.nome}" selection="#{taskbean.tarefa}"
+						rowKey="#{tarefa.nome}" selection="#{taskbean.tarefa}" sortBy="#{tarefa.dataConclusao}"
 						selectionMode="single">
 						<p:column headerText="Tarefa">
 							<h:outputText value="#{tarefa.nome}" />
