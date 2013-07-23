@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"  >
+
+
+	<h:head>
+		 <title>Agenda</title>
+	</h:head>
+
+<h:body>
+
+<h:form id="formPrincipal">
+ 
+ 	<p:commandButton value="Cadastrar" id="cadastrar"
+			oncomplete="dialogCadastrar.show()" />
+
+	<p:commandButton value="Listar" id="listar"
+			oncomplete="dialogListar.show()" />
+	
+	
+</h:form>
+ 
+	<h:form id="formCadastrar">
+		<p:dialog header="Cadastrar" widgetVar="dialogCadastrar" modal="true">
+			<p:panelGrid id="panelCadastrar" columns="2">
+				<h:outputText value="Nome:" />
+				<p:inputText value="#{controller.nome}" />
+				<h:outputText value="Numero:" />
+				<p:inputText value="#{controller.numero}" />
+				<h:outputText value="Operadora:" />
+				<p:inputText value="#{controller.operadora}" />
+				<h:outputText value="Idade:" />
+				<p:inputText value="#{controller.idade}" />
+				<h:outputText value="Email:" />
+				<p:inputText value="#{controller.email}" />
+			</p:panelGrid>
+			<p:commandButton value="Cadastrar"
+				action="#{controller.addContato}" oncomplete="dialogCadastrar.hide()" />
+		</p:dialog>
+	</h:form>
+	
+	<h:form id="formListar">
+		<p:dialog header="Lista de Contatos" widgetVar="dialogListar" modal="true">
+			<p:panelGrid id="panelListar" columns="5">
+				<p:dataTable var="contato" value="#{controller.resultado}">
+					<p:column headerText="Nome">
+						<h:outputText value="#{contato.nome}" />
+					</p:column>
+
+					<p:column headerText="Quantidade de numeros">
+						<h:outputText value="#{contato.qntNumero}" />
+					</p:column>
+
+					<p:column headerText="Numeros">
+						<h:outputText value="#{contato.numeros}" />
+					</p:column>
+
+					<p:column headerText="Idade">
+						<h:outputText value="#{contato.idade}" />
+					</p:column>
+
+					<p:column headerText="Emails">
+						<h:outputText value="#{contato.email}" />
+					</p:column>
+
+				</p:dataTable>
+			</p:panelGrid>
+		</p:dialog>
+	</h:form>
+
+
+
+</h:body>
+</html>
