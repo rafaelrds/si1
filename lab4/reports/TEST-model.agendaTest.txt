@@ -1,0 +1,8 @@
+Testsuite: model.agendaTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,179 sec
+
+Testcase: testaddTelefone took 0,009 sec
+Testcase: testContatoValido took 0,003 sec
+Testcase: testTelefoneValido took 0,002 sec
+Testcase: testBuscaNomeTel took 0,003 sec
+Testcase: testBuscaIdade took 0,002 sec
