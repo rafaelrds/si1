@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="Lab03RafaelRego">
+    <wb-module deploy-name="Lab3RafaelRego">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="Lab03RafaelRego"/>
-        <property name="java-output-path" value="/Lab03RafaelRego/build/classes"/>
+        <property name="java-output-path" value="/Lab3RafaelRego/build/classes"/>
+        <property name="context-root" value="Lab3RafaelRego"/>
     </wb-module>
 </project-modules>
