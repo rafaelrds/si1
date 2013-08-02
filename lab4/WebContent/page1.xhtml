@@ -9,12 +9,12 @@
 <title>Tutorial de JSF!</title>
 </head>
 <body>
-	#{helloWorld.message}
-
+	This is Page 1!
+	
 	<h:form>
 		<h3>Using Managed Bean</h3>
-		<p:commandButton action="#{navigationController.moveToPage1}"
-			value="Page 1" />
+		<p:commandButton action="#{navigationController.backToIndex}"
+			value="Index" />
 	</h:form>
 
 </body>
