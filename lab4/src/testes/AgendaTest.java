@@ -1,6 +1,6 @@
 package testes;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 import junit.framework.Assert;
 import model.Contato;
 import model.Telefone;
@@ -56,14 +56,14 @@ public class AgendaTest {
 
 	@Test
 	public void testContatoValido() {
-		Assert.assertFalse(contato.isContatoValido());
+		assertFalse(contato.isContatoValido());
 		telefone.setOperadora("oi");
 		telefone.setNumero("888888888");
 		try {
 			contato.addTelefone(telefone);
 		} catch (InvalidNumberException e) {}
 		
-		Assert.assertFalse(contato.isContatoValido());
+		assertFalse(contato.isContatoValido());
 //		contato.setNome("Renan");
 		Assert.assertTrue(contato.isContatoValido());
 
@@ -71,19 +71,19 @@ public class AgendaTest {
 	
 	@Test
 	public void testTelefoneValido() {
-		Assert.assertFalse(telefone.ehTelefoneValido());
+		assertFalse(telefone.ehTelefoneValido());
 		telefone.setNumero("8888");
-		Assert.assertFalse(telefone.ehTelefoneValido());
+		assertFalse(telefone.ehTelefoneValido());
 		telefone.setNumero("88888888");
-		Assert.assertTrue(telefone.ehTelefoneValido());
+		assertTrue(telefone.ehTelefoneValido());
 		telefone2.setOperadora("31");
-		Assert.assertFalse(telefone2.ehTelefoneValido());
+		assertFalse(telefone2.ehTelefoneValido());
 		telefone2.setCodigoRegional("44");
-		Assert.assertFalse(telefone2.ehTelefoneValido());
+		assertFalse(telefone2.ehTelefoneValido());
 		telefone2.setNumero("88888888");
-		Assert.assertFalse(telefone2.ehTelefoneValido());
+		assertFalse(telefone2.ehTelefoneValido());
 		telefone2.setOperadoraLigar("21");
-		Assert.assertTrue(telefone2.ehTelefoneValido());
+		assertTrue(telefone2.ehTelefoneValido());
 		
 	}
 	@Test
@@ -92,35 +92,35 @@ public class AgendaTest {
 		agenda.getContatos().add(contato);
 		agenda.setBusca("mar");
 		agenda.fazBusca(null);
-		Assert.assertEquals(1, agenda.getResultadoBusca().size());
+		assertEquals(1, agenda.getResultadoBusca().size());
 		agenda.setBusca("Rob");
 		agenda.fazBusca(null);
-		Assert.assertEquals(2, agenda.getResultadoBusca().size());
+		assertEquals(2, agenda.getResultadoBusca().size());
 		agenda.setBusca("xe");
 		agenda.fazBusca(null);
-		Assert.assertEquals(0, agenda.getResultadoBusca().size());
+		assertEquals(0, agenda.getResultadoBusca().size());
 		agenda.setBusca("99");
 		agenda.fazBusca(null);
-		Assert.assertEquals(3, agenda.getResultadoBusca().size());
+		assertEquals(3, agenda.getResultadoBusca().size());
 	}
 	@Test
 	public void testBuscaIdade() {
 		agenda.setTipoDeBusca("2");
 		agenda.setBusca("40");
 		agenda.fazBusca(null);
-		Assert.assertEquals(1, agenda.getResultadoBusca().size());
+		assertEquals(1, agenda.getResultadoBusca().size());
 		agenda.setTipoDeBusca("3");
-		Assert.assertEquals(1, agenda.getResultadoBusca().size());
+		assertEquals(1, agenda.getResultadoBusca().size());
 		agenda.setTipoDeBusca("4");
-		Assert.assertEquals(1, agenda.getResultadoBusca().size());
+		assertEquals(1, agenda.getResultadoBusca().size());
 		agenda.setTipoDeBusca("2");
 		agenda.setBusca("100");
 		agenda.fazBusca(null);
-		Assert.assertEquals(3, agenda.getResultadoBusca().size());
+		assertEquals(3, agenda.getResultadoBusca().size());
 		agenda.setTipoDeBusca("4");
 		agenda.setBusca("10");
 		agenda.fazBusca(null);
-		Assert.assertEquals(3, agenda.getResultadoBusca().size());
+		assertEquals(3, agenda.getResultadoBusca().size());
 	}
 
 }

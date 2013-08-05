@@ -3,10 +3,9 @@ package model;
 import java.io.Serializable;
 
 public class Telefone implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = -8642232220756721267L;
+
 	private String codigoRegional;
 	private String operadora;
 	private String operadoraLigar;
@@ -53,13 +52,12 @@ public class Telefone implements Serializable {
 		this.numero = numero;
 	}
 
-	private static boolean logicalXOR(boolean x, boolean y) {
+	private static boolean xOR(boolean x, boolean y) {
 		return ((x || y) && !(x && y));
 	}
 
 	public boolean ehTelefoneValido() {
-		boolean notAmbosValidos = logicalXOR(this.codigoRegional == null,
-				this.operadoraLigar == null);
+		boolean notAmbosValidos = xOR(this.codigoRegional == null, this.operadoraLigar == null);
 		if (notAmbosValidos) {
 			return false;
 		}
@@ -68,12 +66,13 @@ public class Telefone implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (o instanceof Telefone) {
-			boolean isNameEqual = this.numero
-					.equals(((Telefone) o).getNumero());
+	public boolean equals(Object obj) {
+		if (obj instanceof Telefone) {
+			boolean isNameEqual = this.numero.equals(((Telefone) obj).getNumero());
+			
 			return isNameEqual;
 		}
+		
 		return false;
 	}
 }

@@ -25,20 +25,17 @@ import exceptions.InvalidNumberException;
 @ManagedBean(name = "agendaBean", eager = true)
 @SessionScoped
 public class Agenda implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private static final String NOME_DO_ARQUIVO = "Agenda.txt";
+
+	private static final long serialVersionUID = -2944088848421718867L;
+	private static final String NOME_ARQUIVO = "Agenda.txt";
+	
 	private String login;
 	private String password;
-
 	private String newLogin;
 	private String newPassword;
+	private Controladora controladora;
 
 	private ArrayList<Contato> contatos;
-	private Controladora controladora;
-	
 	
 	private String email;
 	private Contato contato;
@@ -55,22 +52,21 @@ public class Agenda implements Serializable {
 			lerDados();
 		} catch (IOException e) { }
 		
-		initBean();
+		inicializaBean();
 	}
 	
-	private void initBean() {		
+	private void inicializaBean() {		
 		this.login = "";
 		this.password = "";
 		this.newLogin = "";
 		this.newPassword = "";
-
 		this.email = "";
 		this.contatoValido = "false";
+
 		this.telefoneInvalido = false;
 		this.contato = new Contato();
 		this.telefone = new Telefone();
 		this.contatoSelecionado = new Contato();
-//		contatoSelecionado.setNome("Renan");
 		this.busca = "";
 		this.tipoDeBusca = "1";
 		this.resultadoBusca = new ArrayList<Contato>();
@@ -81,7 +77,7 @@ public class Agenda implements Serializable {
 		ObjectOutputStream out = null;
 		
 		try {
-			fileSaida = new FileOutputStream(NOME_DO_ARQUIVO);
+			fileSaida = new FileOutputStream(NOME_ARQUIVO);
 			out = new ObjectOutputStream(fileSaida);
 			out.writeObject(contatos);
 			out.writeObject(controladora.getUsuarios());
@@ -96,7 +92,7 @@ public class Agenda implements Serializable {
 		ObjectInputStream in = null;
 		
 		try {
-			fileEntrada = new FileInputStream(NOME_DO_ARQUIVO);
+			fileEntrada = new FileInputStream(NOME_ARQUIVO);
 			in = new ObjectInputStream(fileEntrada);
 //			contatos = (ArrayList<Contato>) in.readObject();
 			System.out.println(in.readObject());
@@ -119,7 +115,7 @@ public class Agenda implements Serializable {
 		Usuario novoUsuario = new Usuario(newLogin, newPassword);
 		if(this.controladora.addUsuario(novoUsuario)){
 			msgUsuario("Usuário Cadastrado", "Seja Bem-vindo " + newLogin);
-			initBean();
+			inicializaBean();
 			this.contatos = novoUsuario.getContatos();
 			try {
 				persistirDados();
@@ -178,7 +174,7 @@ public class Agenda implements Serializable {
 	}
 
 	public String logoffButton() {
-		initBean();
+		inicializaBean();
 		return "index.seam";
 	}
 
@@ -305,8 +301,8 @@ public class Agenda implements Serializable {
 		resultadoBusca = new ArrayList<Contato>();
 		for (Contato cont : contatos) {
 
-			boolean idadeBuscaValida = !(cont.getIdade().equals("") || this.busca
-					.equals(""));
+			boolean idadeBuscaValida = !(cont.getIdade().equals("") 
+					|| this.busca.equals(""));
 
 			if (tipoDeBusca.equals("1")) {
 				boolean ehsubnome = cont.getNome().toLowerCase()
@@ -324,8 +320,7 @@ public class Agenda implements Serializable {
 				}
 			}
 			if (tipoDeBusca.equals("2") && idadeBuscaValida) {
-				boolean menor = new Integer(cont.getIdade()) < new Integer(
-						this.busca);
+				boolean menor = new Integer(cont.getIdade()) < new Integer(this.busca);
 				if (menor) {
 					resultadoBusca.add(cont);
 				}
@@ -439,8 +434,8 @@ public class Agenda implements Serializable {
 	}
 
 	public String getContatoValido() {
-		boolean temp = !(this.contato.getNome().equals("") || this.contato
-				.getTelefones().isEmpty());
+		boolean temp = !(this.contato.getNome().equals("") 
+				|| this.contato.getTelefones().isEmpty());
 		this.contatoValido = new Boolean(temp).toString();
 		return contatoValido;
 	}
