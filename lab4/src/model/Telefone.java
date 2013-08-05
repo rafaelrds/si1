@@ -1,10 +1,25 @@
 package model;
 
-public class Telefone {
+import java.io.Serializable;
+
+public class Telefone implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String codigoRegional;
 	private String operadora;
 	private String operadoraLigar;
 	private String numero;
+	private String codigoNacional;
+
+	public String getCodigoNacional() {
+		return codigoNacional;
+	}
+
+	public void setCodigoNacional(String codigoNacional) {
+		this.codigoNacional = codigoNacional;
+	}
 
 	public String getCodigoRegional() {
 		return codigoRegional;
@@ -43,17 +58,20 @@ public class Telefone {
 	}
 
 	public boolean ehTelefoneValido() {
-		boolean notAmbosValidos = logicalXOR(this.codigoRegional == null,this.operadoraLigar==null);
+		boolean notAmbosValidos = logicalXOR(this.codigoRegional == null,
+				this.operadoraLigar == null);
 		if (notAmbosValidos) {
 			return false;
 		}
-		boolean numeroValido = !(this.numero == null || (this.numero.length()<8));
+		boolean numeroValido = !(this.numero == null || (this.numero.length() < 8));
 		return numeroValido;
 	}
-	@Override   
-    public boolean equals(Object o){  
-		if(o instanceof Telefone){ 
-			boolean isNameEqual = this.numero.equals(((Telefone) o).getNumero());
+
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof Telefone) {
+			boolean isNameEqual = this.numero
+					.equals(((Telefone) o).getNumero());
 			return isNameEqual;
 		}
 		return false;

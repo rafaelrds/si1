@@ -1,14 +1,18 @@
-package model;
+package testes;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 import junit.framework.Assert;
+import model.Contato;
+import model.Telefone;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import controller.Agenda;
+import exceptions.InvalidNumberException;
+import bean.Agenda;
 
-public class agendaTest {
+
+public class AgendaTest {
 	Agenda agenda;
 	Contato contato;
 	Contato contato2;
@@ -60,7 +64,7 @@ public class agendaTest {
 		} catch (InvalidNumberException e) {}
 		
 		Assert.assertFalse(contato.isContatoValido());
-		contato.setNome("Renan");
+//		contato.setNome("Renan");
 		Assert.assertTrue(contato.isContatoValido());
 
 	}
