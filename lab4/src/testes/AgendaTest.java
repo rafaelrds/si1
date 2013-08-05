@@ -1,7 +1,6 @@
 package testes;
 
 import static org.junit.Assert.*;
-import junit.framework.Assert;
 import model.Contato;
 import model.Telefone;
 
@@ -65,7 +64,7 @@ public class AgendaTest {
 		
 		assertFalse(contato.isContatoValido());
 //		contato.setNome("Renan");
-		Assert.assertTrue(contato.isContatoValido());
+		assertTrue(contato.isContatoValido());
 
 	}
 	

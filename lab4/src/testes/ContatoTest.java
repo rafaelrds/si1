@@ -1,12 +1,13 @@
 package testes;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Contato;
 import model.Telefone;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,28 +42,28 @@ public class ContatoTest {
 	@Test
 	public void testConstrutor() {
 		//Inicializado Contato default;
-		Assert.assertEquals(contato1.getNome(), "");
-		Assert.assertEquals(contato1.getIdade(), "");
-		Assert.assertEquals(contato1.getDescricao(), "Nao existe descricao para este contato.");
-		Assert.assertEquals(contato1.getEmails(), new ArrayList<String>());
-		Assert.assertEquals(contato1.getTelefones(), new ArrayList<Telefone>());
-		Assert.assertEquals(contato1.getQuantidadeTelefones(), (new Integer(0)).toString());
+		assertEquals(contato1.getNome(), "");
+		assertEquals(contato1.getIdade(), "");
+		assertEquals(contato1.getDescricao(), "Nao existe descricao para este contato.");
+		assertEquals(contato1.getEmails(), new ArrayList<String>());
+		assertEquals(contato1.getTelefones(), new ArrayList<Telefone>());
+		assertEquals(contato1.getQuantidadeTelefones(), (new Integer(0)).toString());
 		
 		//Inicializando Contato com entrada;
 		try {
 			this.contato3 = new Contato("Teste", telefone3);
 		} catch (InvalidNumberException e) {
-			Assert.fail();
+			fail();
 		}
-		Assert.assertEquals(contato3.getNome(), "Teste");
-		Assert.assertEquals(contato3.getIdade(), "");
-		Assert.assertEquals(contato3.getDescricao(), "Nao existe descricao para este contato.");
-		Assert.assertEquals(contato3.getEmails(), new ArrayList<String>());
+		assertEquals(contato3.getNome(), "Teste");
+		assertEquals(contato3.getIdade(), "");
+		assertEquals(contato3.getDescricao(), "Nao existe descricao para este contato.");
+		assertEquals(contato3.getEmails(), new ArrayList<String>());
 		//Testando os telefones cadastrados
 		ArrayList<Telefone> teste = new ArrayList<Telefone>();
 		teste.add(telefone3);
-		Assert.assertEquals(contato3.getTelefones(), teste);
-		Assert.assertEquals(contato3.getQuantidadeTelefones(), (new Integer(1)).toString());
+		assertEquals(contato3.getTelefones(), teste);
+		assertEquals(contato3.getQuantidadeTelefones(), (new Integer(1)).toString());
 	}
 
 	@Test
@@ -71,7 +72,7 @@ public class ContatoTest {
 		//Telefone1 é inválido pois não tem número
 		try {
 			contato1.addTelefone(telefone1);
-			Assert.fail();
+			fail();
 		} catch (InvalidNumberException e) {
 		}
 		//Telefone3 é válido pois tem número
@@ -79,14 +80,14 @@ public class ContatoTest {
 			contato1.addTelefone(telefone3);
 			telefones.add(telefone3);
 		} catch (InvalidNumberException e) {
-			Assert.fail();
+			fail();
 		}
 
-		Assert.assertEquals(contato1.getTelefones(), telefones);
+		assertEquals(contato1.getTelefones(), telefones);
 		
 		//Como é o único telefone, não poderá remover
 		contato1.removeTelefone(telefone3);
-		Assert.assertEquals(contato1.getTelefones(), telefones);
+		assertEquals(contato1.getTelefones(), telefones);
 		
 		//Adicionando outro telefone válido
 		telefone1.setNumero("12345677");
@@ -94,30 +95,30 @@ public class ContatoTest {
 			contato1.addTelefone(telefone1);
 			telefones.add(telefone1);
 		} catch (InvalidNumberException e) {
-			Assert.fail();
+			fail();
 		}
 		
-		Assert.assertEquals(contato1.getTelefones(), telefones);
+		assertEquals(contato1.getTelefones(), telefones);
 		
 		//Não adiciona telefones repetidos
 		telefone2.setNumero("12345678"); 
 		try {
 			contato1.addTelefone(telefone2);
-			Assert.fail();
+			fail();
 		} catch (InvalidNumberException e) {
 		}
 		
-		Assert.assertEquals(contato1.getTelefones(), telefones);
+		assertEquals(contato1.getTelefones(), telefones);
 		contato1.removeTelefone(telefone3);
 		
 		contato1.addEmail("EMAIL");
 		List<String> emails = new ArrayList<String>();
 		emails.add("EMAIL");
-		Assert.assertEquals(contato1.getEmails(), emails);
+		assertEquals(contato1.getEmails(), emails);
 		
 		contato1.removeEmail("EMAIL");
 		emails.remove("EMAIL");
-		Assert.assertEquals(contato1.getEmails(), emails);
+		assertEquals(contato1.getEmails(), emails);
 		
 	}
 	
