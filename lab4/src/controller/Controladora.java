@@ -9,10 +9,7 @@ import model.Usuario;
 
 public class Controladora implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1629178673519357017L;
 	private List<Usuario> usuarios;
 	
 	public Controladora(){
