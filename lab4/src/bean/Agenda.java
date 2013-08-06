@@ -19,7 +19,7 @@ import model.Contato;
 import model.Telefone;
 import model.Usuario;
 import controller.Controladora;
-import exceptions.Emptyfieldexception;
+import exceptions.EmptyFieldException;
 import exceptions.InvalidNumberException;
 
 @ManagedBean(name = "agendaBean", eager = true)
@@ -274,7 +274,7 @@ public class Agenda implements Serializable {
 		return telefone;
 	}
 
-	public void addContato(ActionEvent event) throws Emptyfieldexception,
+	public void addContato(ActionEvent event) throws EmptyFieldException,
 			InvalidNumberException {
 		if (!contatos.contains(contato)) {
 			contatos.add(contato);
