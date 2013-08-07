@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -70,6 +71,9 @@ public class Agenda implements Serializable {
 		this.busca = "";
 		this.tipoDeBusca = "1";
 		this.resultadoBusca = new ArrayList<Contato>();
+		
+		inicializeArrays(); //cria usuario|123456 com 5 telefones cadastrados
+		
 	}
 
 	public void persistirDados() throws IOException {
@@ -128,23 +132,6 @@ public class Agenda implements Serializable {
 		}
 		
 		
-		
-//		if(this.controladora.getUsuarios() == null){
-//			this.controladora.setUsuarios(new ArrayList<Usuario>());
-//		}
-//		if (!this.controladora.getUsuarios().contains(temp)) {
-//			this.controladora.addUsuario(temp);
-//			msgUsuario("Usuário Cadastrado", "Seja Bem-vindo " + newLogin);
-//			inicializarBean();
-//			this.contatos = temp.getContatos();
-//			try {
-//				persistirDados();
-//				return "index.seam";
-//			} catch (Exception e) {
-//			}
-//		}
-//		msgUsuario("Usuário já existente", "Escolha outro login");
-//		return "";
 	}
 
 	public String loginButton() {
@@ -158,19 +145,6 @@ public class Agenda implements Serializable {
 			return "";	
 		}
 		
-//		if (this.controladora.getUsuarios() != null) {
-//			for (Usuario user : this.controladora.getUsuarios()) {
-//				ArrayList<Contato> temp = user.confereLogin(login, password);
-//				if (temp != null) {
-//					this.contatos = temp;
-//					msgUsuario("Usuário logado", "Seja Bem-vindo " + login);
-//					return "index.seam";
-//				}
-//			}
-//		}
-//		System.out.println("CCCCCCCCCCCCCCCC");
-//		msgUsuario("Login não realizado", "Senha errada ou Login inexistente");
-//		return "";
 	}
 
 	public String logoffButton() {
@@ -183,51 +157,73 @@ public class Agenda implements Serializable {
 		context.addMessage(null, new FacesMessage(string1, string2));
 	}
 
-//	public void inicializeArrays() {
-//
-//		Contato c1 = new Contato();
-//		Contato c2 = new Contato();
-//		Contato c3 = new Contato();
-//		Contato c4 = new Contato();
-//		Contato c5 = new Contato();
-//		Telefone t = new Telefone();
-//		Telefone t2 = new Telefone();
-//		Telefone t3 = new Telefone();
-//		Telefone t4 = new Telefone();
-//		Telefone t5 = new Telefone();
-//		t.setNumero("88221533");
-//		t2.setNumero("88332343");
-//		t3.setNumero("99832343");
-//		t4.setNumero("99990000");
-//		t5.setNumero("89343231");
-//		t.setOperadora("OI");
-//		t3.setCodigoRegional("81");
-//		t3.setOperadoraLigar("31");
-//		c1.setNome("Robert Silva Alves");
-//		c2.setNome("Marta");
-//		c3.setNome("Chris Santos");
-//		c4.setNome("Roberto Carlos Campos da Silva");
-//		c5.setNome("Gilberto");
-//		c1.addEmail("RobertSA@gmail.com");
-//		c3.addEmail("ChrisSantos@gmail.com");
-//		c1.setIdade("40");
-//		c2.setIdade("20");
-//		c5.setIdade("60");
-//		try {
-//			c1.addTelefone(t);
-//			c1.addTelefone(t3);
-//			c1.addTelefone(t4);
-//			c2.addTelefone(t2);
-//			c3.addTelefone(t3);
-//			c3.addTelefone(t2);
-//			c4.addTelefone(t4);
-//			c5.addTelefone(t5);
-//		} catch (InvalidNumberException e) {
-//		}
-//		this.contatos = new ArrayList<Contato>(
-//				Arrays.asList(c1, c2, c3, c4, c5));
-//
-//	}
+	public void inicializeArrays() {
+		Contato c1 = new Contato();
+		Contato c2 = new Contato();
+		Contato c3 = new Contato();
+		Contato c4 = new Contato();
+		Contato c5 = new Contato();
+		Telefone t = new Telefone();
+		Telefone t2 = new Telefone();
+		Telefone t3 = new Telefone();
+		Telefone t4 = new Telefone();
+		Telefone t5 = new Telefone();
+		t.setNumero("88221533");
+		t2.setNumero("88332343");
+		t3.setNumero("99832343");
+		t4.setNumero("99990000");
+		t5.setNumero("89343231");
+		t.setOperadora("OI");
+		t3.setCodigoRegional("81");
+		t3.setOperadoraLigar("31");
+		c1.setNome("Ulisses Peixoto");
+		c1.setDescricao("Um mecanico hidraulico e cinefilo.");
+		c2.setNome("Vania Uchoa");
+		c2.setDescricao("Uma jovem estudante de medicina.");
+		c3.setNome("Agenor Alencar");
+		c3.setDescricao("Um senhor de idade, perito em jogos de tabuleiro.");
+		c4.setNome("Otavio Figueira");
+		c4.setDescricao("Um paisagista e amante de esportes de adrenalina.");
+		c5.setNome("Terencio Horto");
+		c5.setDescricao("Um escritor freelancer e amante dos quadrinhos");
+		c1.addEmail("ulisses@github.com");
+		c2.addEmail("uchoavaninha@gmail.com");
+		c3.addEmail("agenora@ibm.com");
+		c4.addEmail("otavio@github.com");
+		c5.addEmail("terencioh@malvados.com");
+		c1.setIdade("40");
+		c2.setIdade("22");
+		c3.setIdade("85");
+		c4.setIdade("38");
+		c5.setIdade("55");
+		try {
+			c1.addTelefone(t);
+			c1.addTelefone(t3);
+			c1.addTelefone(t4);
+			c2.addTelefone(t2);
+			c3.addTelefone(t3);
+			c3.addTelefone(t2);
+			c4.addTelefone(t4);
+			c5.addTelefone(t5);
+		} catch (InvalidNumberException e) {
+		}
+		this.contatos = new ArrayList<Contato>(
+				Arrays.asList(c1, c2, c3, c4, c5));
+		
+		Usuario novoUsuario = new Usuario("usuario", "123456");
+		novoUsuario.addContato(c1);
+		novoUsuario.addContato(c2);
+		novoUsuario.addContato(c3);
+		novoUsuario.addContato(c4);
+		novoUsuario.addContato(c5);
+		controladora.addUsuario(novoUsuario);
+		try {
+			persistirDados();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 	public void addTelefone(ActionEvent event) {
 		this.telefoneInvalido = false;
